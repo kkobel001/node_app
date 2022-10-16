@@ -11,6 +11,7 @@
   },
   "author": "Kasia Kobel",
   "license": "ISC",
+  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/kkobel001/node_app/issues"
   },
