@@ -1,7 +1,18 @@
-const arg= process.argv.splice(2);
+const options={};
 
-const name =''
-const size=''
-const text= `Przygotowuje ${name} o pojemnosci ${size} `
+const arg= process.argv.splice(2).forEach(x=> {
+    const parts = x.split('=');
+    options[parts[0]]=parts[1];
+});
 
-console.log((text.join(arg)));
+
+let drink;
+switch (options.name) {
+    case 'juice' : drink = 'Sok'; break;
+    case 'coffe' : drink = 'Kawę'; break;
+    default: drink = 'Napój'
+}
+
+const text= `Przygotowuje ${drink} o pojemnosci ${options.size} `;
+
+console.log(text);
