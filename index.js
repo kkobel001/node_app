@@ -1,27 +1,29 @@
-const http= require('http');
+const express = require('express');
+const port=3000;
 
-function requestListener(req,res) {
-    console.log('Ktos wszedl na strone');
-    console.log(req.url);
+const app = express();
 
-    if (req.url === "/kontakt"){
-        res.write('<h1>to jest kontakt</h1>')
-        res.end()
+app.get('/', (req,res)=> {
+    res.send('Hello express');
+})
+app.get('/kontakt', (req,res)=> {
+    res.send('Kontakt');
+})
+
+app.get('/firmy/:name', (req,res)=> {
+    const {name} = req.params;
+    const companies=[
+        {slug:'booking', name: "booking.com"},
+        {slug:'vinted', name: "vined.com"},
+    ]
+    const company = companies.find(x=> x.slug === name);
+    if(company) {
+        res.send(`Nazwa firmy ${company.name}`)
+    } 
+    else {
+        res.send(`Firma nie istnieje`)
     }
-    if (req.url === "/"){
-        res.write('<h1>to jest strona główna</h1>')
-        res.end()
-    }
-    res.write('<h1>404</h1>')
-     return res.end()
+        
+})
+app.listen(port);
 
-
-
-    // res.end('Hello node');
-}
-
-const serwer = http.createServer(requestListener);
-
-serwer.listen(3000,()=>{
-    console.log('Serwer slucha na porcie https:localhost:3000')
-});
