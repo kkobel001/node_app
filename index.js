@@ -1,16 +1,21 @@
 const express = require('express');
 const port=3000;
 const path= require('path');
+const ejsLayouts= require('express-ejs-layouts');
 const app = express();
 
 
+
 app.set('view engine', 'ejs');
+app.use(ejsLayouts);
+app.set('layout', './layouts/main');
 app.set('views', path.join(__dirname + '/views'));
 
 
 app.get('/',(req,res) => {
-    res.render('home', {
-        title:"Strona główna"
+    res.render('pages/home', {
+        title:"Strona główna",
+        url: req.url,
     });
 })
 
@@ -31,17 +36,23 @@ app.get('/firmy/:name', (req,res)=> {
     const company = companies.find(x=> x.slug === name);
 
     
-        res.render(`company`, {
+        res.render('pages/company', {
             name: company?.name,
             companies,
-            title:company?.name ?? 'Brak wyników'
+            title:company?.name ?? 'Brak wyników',
+            url: req.url,
+
         });
    
         
 })
 app.get('*', (req,res)=> {
-    res.render('errors/404')
+    res.render('errors/404', {
+        title: 'Nie znaleziono',
+        layout: 'layouts/minimalistic',
+        url: req.url,
+
+    })
 });
 
 app.listen(port);
-
