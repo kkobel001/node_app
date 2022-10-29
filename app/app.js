@@ -1,8 +1,10 @@
 const express = require('express');
-const port=3000;
 const path= require('path');
 const ejsLayouts= require('express-ejs-layouts');
 const app = express();
+
+//initial database
+require('./db/mongoose')
 
 
 
@@ -10,6 +12,8 @@ app.set('view engine', 'ejs');
 app.use(ejsLayouts);
 app.set('layout', './layouts/main');
 app.set('views', path.join(__dirname + '/views'));
+
+
 
 
 app.get('/',(req,res) => {
@@ -55,4 +59,4 @@ app.get('*', (req,res)=> {
     })
 });
 
-app.listen(port);
+module.exports= app;

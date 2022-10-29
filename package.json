@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "nodemon index.js -e js, json,ts",
-    "debug": "node --inspect index.js"
+    "watch": "nodemon app/index.js -e js, json,ejs",
+    "debug": "node --inspect app/index.js -e js.json"
   },
   "repository": {
     "type": "git",
