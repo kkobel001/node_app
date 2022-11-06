@@ -1,5 +1,5 @@
-const app = require('./app');
-const port=3000;
+const app = require('./routes/app');
+const {port}=require('./config');
 
 
 

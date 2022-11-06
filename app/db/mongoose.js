@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const url  ='mongodb://localhost:27017/node-project';
+const {database}  ='../config.js';
 const Company = require('./models/company');
 
-mongoose.connect(url);
+mongoose.connect(database);
 
 
 // async function findcompany() {
