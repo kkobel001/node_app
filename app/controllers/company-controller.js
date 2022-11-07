@@ -37,7 +37,8 @@ class CompanyController {
         }
         catch(e) {
             res.redner('pages/companies/createNewCompany', {
-                errors:e.errors
+                errors:e.errors,
+                from : req.body
             })
         }
         
