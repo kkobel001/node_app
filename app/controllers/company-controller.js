@@ -1,3 +1,4 @@
+const Company = require('../db/models/company');
 const Comapny = require('../db/models/company');
 
 class CompanyController {
@@ -72,6 +73,16 @@ class CompanyController {
             })
         }
         
+     }
+     async deleteCompany(req,res){
+        const name = req.params;      
+        try{
+            await Company.deleteOne({slug:name});     
+            res.redirect('/firmy');
+        }
+        catch(e) {
+            res.sendStatus(204);
+        }   
      }
 }
 module.exports = new CompanyController();

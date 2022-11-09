@@ -14,6 +14,8 @@ router.get('admin/firmy/:name/edytuj', CompanyController.showEditCompanyForm),
 router.get('/admin/firmy/dodaj', CompanyController.showCreateNewCompany),
 router.post('/admin/firmy/dodaj', CompanyController.createNewCompany),
 router.post('admin/firmy/:name/edytuj', CompanyController.editCompany),
+router.get('admin/firmy/:name/usun', CompanyController.deleteCompany),
+
 router.get('*',PageController.shownotfound),
 
 module.exports= router;
