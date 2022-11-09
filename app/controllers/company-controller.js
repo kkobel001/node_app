@@ -43,5 +43,35 @@ class CompanyController {
         }
         
      }
+     //wczytuja sie pliki
+    async showEditCompanyForm(req,res) {
+        const {name} = req.params;
+        const company = await Company.findOne({slug:name});
+
+        res.render('pages/companies/editCompany', {
+            form:company
+        })
+     }   
+    // post zapisuja sie zmienione pliki
+    async editCompany(req,res) {
+        const {name} = req.params;
+        const company = await Company.findOne({slug:name});
+        //zmiana 
+        company.name=req.body.name;
+        company.slug =req.body.slug;
+        company.empoyesCount= req.body.empoyesCount;
+
+        try {
+            await company.save();
+            res.redirect('/firmy');
+        }
+        catch(e) {
+            res.redner('pages/companies/createNewCompany', {
+                errors:e.errors,
+                from : req.body
+            })
+        }
+        
+     }
 }
 module.exports = new CompanyController();
