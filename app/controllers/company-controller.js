@@ -4,8 +4,17 @@ const Comapny = require('../db/models/company');
 class CompanyController {
 
    async showCompanies(req,res){
-        const {q,sort} = req.query;
-        let query =  Company.find({name:{$regex: q || '', $options : 'i'}});
+        const {q,sort, countmin, countmax } = req.query;
+        const where ={};
+        if (q) {where.name ={$regex: q || '', $options : 'i'}}
+
+        if (countmin || countmax ) {
+            where.employeesCount={};
+            if (countmin)  where.employeesCount.$gte = countmin;
+            if (countmax)  where.employeesCount.$lte = countmax;
+            // where.employeesCount = { $gte: countmin || 0}
+        }
+        let query =  Company.find(where);
         if (sort) {
            const  s = sort.split('|')
             query = query.sort({ [s[0]]: s[1] });
@@ -59,7 +68,7 @@ class CompanyController {
             form:company
         })
      }   
-    // post zapisuja sie zmienione pliki
+    // post -zapisuja sie zmienione pliki
     async editCompany(req,res) {
         const {name} = req.params;
         const company = await Company.findOne({slug:name});
