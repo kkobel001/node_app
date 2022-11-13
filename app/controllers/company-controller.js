@@ -5,24 +5,44 @@ class CompanyController {
 
    async showCompanies(req,res){
         const {q,sort, countmin, countmax } = req.query;
+        
+        const page= req.query.page || 1; //która jest strona
+        const perPage=2;  //ile chce wyników wyświetlic
+
+        //search
         const where ={};
         if (q) {where.name ={$regex: q || '', $options : 'i'}}
-
+        //filter
         if (countmin || countmax ) {
             where.employeesCount={};
             if (countmin)  where.employeesCount.$gte = countmin;
             if (countmax)  where.employeesCount.$lte = countmax;
             // where.employeesCount = { $gte: countmin || 0}
         }
-        let query =  Company.find(where);
+
+        let query =  Company.find(where); //sort.find
+       
+        //paginantion
+        query=query.skip((page-1)*perPage);
+        query=query.limit(perPage);
+
+        
+        //sort
         if (sort) {
            const  s = sort.split('|')
             query = query.sort({ [s[0]]: s[1] });
         }
+        //downloading results
         const companies= await query.exec();
+        const resultsPageCount= await Company.find(where).count(); // ilosc wynikow
+        const pagesCount =  Math.ceil(resultsPageCount / perPage); //ilosc stron)
 
         res.render('pages/companies/companies', {
             companies,
+            page,
+            pagesCount,
+            resultsPageCount
+
         });
     }
 
