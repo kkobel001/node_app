@@ -1,5 +1,4 @@
 const Company = require('../db/models/company');
-const Comapny = require('../db/models/company');
 
 class CompanyController {
 
@@ -26,7 +25,7 @@ class CompanyController {
         query=query.skip((page-1)*perPage);
         query=query.limit(perPage);
 
-        
+
         //sort
         if (sort) {
            const  s = sort.split('|')

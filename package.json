@@ -20,6 +20,7 @@
   "homepage": "https://github.com/kkobel001/node_app#readme",
   "description": "",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "bootstrap": "^5.2.2",
     "chalk": "^5.1.2",
     "dotenv": "^16.0.3",

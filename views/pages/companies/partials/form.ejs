@@ -6,7 +6,8 @@
         name="name" 
         class="form-control  <%- errors?.name ? 'is-invalid' : '' %>" 
         required 
-        value="<%= form.name%>"
+        id="name"
+        value="<%- form.name%>"
         />
         <% if (errors?.name) { %> 
             <div class="invalid-feedback"><%= errors.name.message %></div>
@@ -17,9 +18,10 @@
         <input
          type="text" 
          name="slug" 
+         id="slug"
          class="form-control  <%- errors?.slug ? 'is-invalid' : '' %>" 
          required 
-         value="<%= form.slug%>"
+         value="<%- form.slug%>"
         />
         <% if (errors?.slug) { %> 
             <div class="invalid-feedback"><%= errors.slug.message %></div>
@@ -31,7 +33,7 @@
         type="number" 
         name="empoyeesCount" 
         class="form-control" 
-        value="<%= form.empoyeesCount%>"
+        value="<%- form.empoyeesCount%>"
         />    
     </div>
     <button class ="btn btn-primary"> <%-buttoText%>></button>  

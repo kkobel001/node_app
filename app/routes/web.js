@@ -1,6 +1,7 @@
 const express = require('express');
 const router= new express.Router();
 const CompanyController = require('../controllers/company-controller');
+const UserController = require('../controllers/user-controler');
 const PageController = require('../controllers/page-controller');
 
 
@@ -8,6 +9,11 @@ const PageController = require('../controllers/page-controller');
 router.get('/',PageController.showhome),
 router.get('/firmy', CompanyController.showCompanies),
 router.get('/firmy/:name', CompanyController.showCompany),
+
+router.get('/zarejestruj', UserController.showRegister),
+router.post('/zarejestruj', UserController.register),
+
+
 
 
 router.get('admin/firmy/:name/edytuj', CompanyController.showEditCompanyForm),
