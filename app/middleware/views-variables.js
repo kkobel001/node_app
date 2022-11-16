@@ -4,6 +4,8 @@ module.exports ={
         res.locals.errors= null;
         res.locals.errors= {};
         res.locals.query= req.query;
+        res.locals.user = req.session.user
+
          next()
        }
 }

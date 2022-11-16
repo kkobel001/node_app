@@ -3,6 +3,11 @@
 <form>
     <%- include('partials/search')%>
 
+    <% if (user) { %>
+        <div class="row">
+            <a href="/admin/firmy/dodaj" class="btn btn-success">Dodaj nową firmę</a>
+        </div>
+    <%}%>
     <div class="div-row">
         <div class="col-3">
         
@@ -15,8 +20,11 @@
                         <p class="h3 mb-4"><%= company.name %></p>
                         <p>Pracowników: <%= company.employeesCount %></p>
                         <a href="/firmy/<%= company.slug %>" class="btn btn-primary">Zobacz</a>
-                        <a href="/firmy/<%= company.slug %>/edytuj" class="btn btn-worning">Edytuj</a>
-                        <a href="/firmy/<%= company.slug %>/usun" onclick="return confirm('Czy jesteś pewny?')" class="btn btn-danger">Usuń</a>
+                        <% if (user) { %>
+                            <a href="/firmy/<%= company.slug %>/edytuj" class="btn btn-worning">Edytuj</a>
+                            <a href="/firmy/<%= company.slug %>/usun" onclick="return confirm('Czy jesteś pewny?')" class="btn btn-danger">Usuń</a>
+                        <%}%>
+
                     </div>
                 </div>
                 <% }); %>

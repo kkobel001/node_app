@@ -3,6 +3,8 @@ class PageController {
         res.render('pages/home', {
             title:"Strona główna",
         });
+
+      
     }
     shownotfound(req,res) {
         res.render('errors/404', {

@@ -28,7 +28,7 @@ userSchema.post('save', function(error, doc, next) {
     next(error);
 })
 
-
+//hashowanie hasla
 userSchema.pre('save', function(next) {
     const user = this;
     const salt =  bcrypt.genSaltSync(10);
@@ -37,6 +37,14 @@ userSchema.pre('save', function(next) {
     next();
 })
 
-const Uder = mongoose. model('User', userSchema);
+userSchema.methods={
+    comparePassword(password) {
+        //porownanie hasla poprzedniego z nowym
+        const user = this;
+        return bcrypt.compareSync(password, user.password);
+    }
+}
+
+const User = mongoose. model('User', userSchema);
 
 module.exports=User;
