@@ -1,3 +1,4 @@
+const { LongWithoutOverridesClass } = require('bson');
 const User = require('../db/models/company');
 
 
@@ -54,6 +55,12 @@ class UserController {
                 })
             }
         }
+        logout(req,res){
+            req.session.distroy(),
+            res.redirect('/')
+        }
 }
+
+
 
 module.exports= new UserController();
