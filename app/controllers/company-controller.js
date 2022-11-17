@@ -31,8 +31,8 @@ class CompanyController {
            const  s = sort.split('|')
             query = query.sort({ [s[0]]: s[1] });
         }
-        //downloading results
-        const companies= await query.exec();
+        //downloading comapnies
+        const companies= await query.populate('user').exec();
         const resultsPageCount= await Company.find(where).count(); // ilosc wynikow
         const pagesCount =  Math.ceil(resultsPageCount / perPage); //ilosc stron)
 
@@ -65,6 +65,7 @@ class CompanyController {
             name: req.body.name,
             slug: req.body.slug,
             empoyesCount : req.body.empoyesCount,
+            user: req.session.user._id, //currently user
         })
         try {
             await company.save();

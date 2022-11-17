@@ -19,6 +19,11 @@
                     <div class="card-body">
                         <p class="h3 mb-4"><%= company.name %></p>
                         <p>Pracowników: <%= company.employeesCount %></p>
+                        <p>Kontakt: <%= company.user?.email %></p>
+                        <p>CEO: <%= company.user?.email %></p>
+                        <p>Name: <%= company.fullName %></p>
+
+
                         <a href="/firmy/<%= company.slug %>" class="btn btn-primary">Zobacz</a>
                         <% if (user) { %>
                             <a href="/firmy/<%= company.slug %>/edytuj" class="btn btn-worning">Edytuj</a>

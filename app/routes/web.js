@@ -28,4 +28,4 @@ router.get('admin/firmy/:name/usun', CompanyController.deleteCompany),
 
 router.get('*',PageController.shownotfound),
 
-module.exports= router;
+module.exports= router;a

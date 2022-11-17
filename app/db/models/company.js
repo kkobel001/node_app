@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const {chechForbidenString} = require('../validators')
+const {chechForbidenString} = require('../validators');
+// const User = require('./user');
 
 const CompanySchema = new Schema({
     slug: {
@@ -19,6 +20,11 @@ const CompanySchema = new Schema({
     empoyesCount :{
         type:Number,
         min:1 
+    },
+    user : {
+        type: mongoose.Types.ObjectId,
+        required: true,
+        ref: 'user',
     }
 });
 CompanySchema.path('slug').set((value) => value.toLowerCase());

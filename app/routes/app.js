@@ -29,6 +29,9 @@ app((cookiesParser));
 //middleware
 app.use('/', require('../middleware/views-variables'));
 app.use('/', require('../middleware/user-middleware'));
+app.use('/admin', require('../middleware/auth'));
+
+
 
 
 
