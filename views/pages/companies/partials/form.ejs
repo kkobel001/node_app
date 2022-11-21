@@ -1,4 +1,4 @@
-<form mathod="POST"  >
+<form mathod="POST" enctype="multipart/form-data" >
     <div class="mb-3">
         <label for ="" class="form-label">Nazwa firmy</label>
         <input 
@@ -12,6 +12,11 @@
         <% if (errors?.name) { %> 
             <div class="invalid-feedback"><%= errors.name.message %></div>
          <% } %>
+    </div>
+
+    <div class="mb-3">
+        <laber for="image" class="form-label">Zdjęcie</laber>
+        <input type="file" name="image" class="form-control" id="image"/>
     </div>
     <div class="mb-3">
         <label for ="" class="form-label">Slug</label>

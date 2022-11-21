@@ -25,7 +25,8 @@ const CompanySchema = new Schema({
         type: mongoose.Types.ObjectId,
         required: true,
         ref: 'user',
-    }
+    },
+    image: String
 });
 CompanySchema.path('slug').set((value) => value.toLowerCase());
 

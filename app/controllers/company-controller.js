@@ -96,6 +96,7 @@ class CompanyController {
         company.name=req.body.name;
         company.slug =req.body.slug;
         company.empoyesCount= req.body.empoyesCount;
+        company.image=req.file.filename;
 
         try {
             await company.save();
