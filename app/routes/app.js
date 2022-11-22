@@ -23,8 +23,9 @@ app.set('layout', './layouts/main');
 app.set('views', path.join(__dirname + '/../views'));
 
 //bodyparser
-app(express.urlencoded({extended:true}));
-app((cookiesParser));
+app.use(express.urlencoded({extended:true}));
+app.use((cookiesParser));
+app.use(express.json());
 
 //middleware
 app.use('/', require('../middleware/views-variables'));
@@ -36,7 +37,8 @@ app.use('/admin', require('../middleware/auth'));
 
 
 //routes
-app.use(require('./web.js'));
+app.use('/api', require('./routes/api'));
+app.use(require('./routes/web'));
 
 
 
