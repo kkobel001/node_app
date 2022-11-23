@@ -13,7 +13,7 @@ class CompanyController {
             name: req.body.name,
             slug: req.body.slug,
             empoyesCount : req.body.empoyesCount,
-            user:req.body.user,
+            user:req.user._id, //downloads from files user not session
             // user: req.session.user._id, //currently user
         })
         try {
@@ -60,4 +60,4 @@ class CompanyController {
 
 }
 
-module.exports= new CompanyController;
+module.exports= new CompanyController();

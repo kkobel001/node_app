@@ -2,7 +2,10 @@ const e = require('express');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
-const {validateEmail} = require('../validators')
+const {validateEmail} = require('../validators');
+const randomstring = require("randomstring");
+
+
 
 
 const userSchema = new Schema({
@@ -25,6 +28,9 @@ const userSchema = new Schema({
     },
     lastName: {
         type: String, 
+    },
+    apiToken :{
+        type:String
     }
 })
 userSchema.post('save', function(error, doc, next) {
@@ -32,6 +38,14 @@ userSchema.post('save', function(error, doc, next) {
         erorr.errors ={ email: {message:'Taki email jest juz zajęty'}};
     }
     next(error);
+})
+
+userSchema.pre('save', function(next){
+    const user=this;//aktualny user
+    if(user.isNew) {
+        user.apiToken = randomstring.generate(30);
+    }
+    next()
 })
 
 //hashowanie hasla
