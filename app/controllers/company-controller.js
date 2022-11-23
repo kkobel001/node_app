@@ -111,7 +111,9 @@ class CompanyController {
         
      }
      async deleteCompany(req,res){
-        const name = req.params;      
+        const name = req.params;   
+        const company = await Company.findOne({slug:slug});
+   
         try{
             await Company.deleteOne({slug:name});     
             res.redirect('/firmy');
