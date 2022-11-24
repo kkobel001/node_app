@@ -5,6 +5,8 @@ const app = express();
 const cookiesParser=require('cookie-parser');
 const session= require('express-session'); 
 const {sessionKeySecret}= require('./config');
+const helmet = require('helmet');
+const rateLimiterMiddleware = '../middleware/rate-limited-middleware.js';
 
 //initial database
 require('../db/mongoose')
@@ -16,6 +18,17 @@ app.use(session({
     cookie: {maxAge:1000 *60 *60 *24 *3}, //3 day
     resave: false
 }))
+
+app.use(helmet({
+    contentSecurityPolicy :{
+        directives :{
+            defaultSrc: ["'self"],
+            scriptSrc: ["'self", "cdn.jsdelivr.net"],
+            styleSrc: ["'self", "cdn.jsdelivr.net"]
+        }
+    }
+}));
+app.use(rateLimiterMiddleware);
 
 app.set('view engine', 'ejs');
 app.use(ejsLayouts);

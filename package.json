@@ -30,12 +30,15 @@
     "express-ejs-layouts": "^2.5.1",
     "express-session": "^1.17.3",
     "fixed": "^0.3.1",
+    "helmet": "^6.0.0",
     "issue": "^0.0.1",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.11.0",
     "mongoose": "^6.7.0",
     "multer": "^1.4.5-lts.1",
     "node-fetch": "^3.2.10",
     "randomstring": "^1.2.3",
+    "rate-limiter-flexible": "^2.4.1",
     "the": "^1.0.2"
   }
 }
