@@ -33,7 +33,7 @@ class CompanyController {
         }
         //downloading comapnies
         const companies= await query.populate('user').exec();
-        const resultsPageCount= await Company.find(where).count(); // ilosc wynikow
+        const resultsPageCount= await Company.find(where).countDocuments(); // ilosc wynikow
         const pagesCount =  Math.ceil(resultsPageCount / perPage); //ilosc stron)
 
         res.render('pages/companies/companies', {
